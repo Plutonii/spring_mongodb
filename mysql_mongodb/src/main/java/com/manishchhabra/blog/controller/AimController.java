@@ -19,14 +19,19 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
-import org.krams.tutorial.domain.Person;
-import org.krams.tutorial.service.PersonService;
+import com.manishchhabra.blog.model.Person;
+import com.manishchhabra.blog.service.PersonService;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import org.apache.log4j.Logger;
 
 
 @Controller    
 public class AimController {  
+	
+	protected static Logger logger = Logger.getLogger("controller");
+
 	
 	@Autowired
 	private AimService aimService;
@@ -75,11 +80,11 @@ public class AimController {
 	 * Handles and retrieves all persons and show it in a JSP page
 	 * 
 	 * @return the name of the JSP page
-	 *//*
+	 */
     @RequestMapping(value = "/persons", method = RequestMethod.GET)
     public String getPersons(Model model) {
     	
-    	logger.debug("Received request to show all persons");
+    	//logger.debug("Received request to show all persons");
     	
     	// Retrieve all persons by delegating the call to PersonService
     	List<Person> persons = personService.getAll();
@@ -89,13 +94,13 @@ public class AimController {
     	
     	// This will resolve to /WEB-INF/jsp/personspage.jsp
     	return "personspage";
-	}*/
+	}
     
     /**
      * Retrieves the add page
      * 
      * @return the name of the JSP page
-     *//*
+     */
     @RequestMapping(value = "/persons/add", method = RequestMethod.GET)
     public String getAdd(Model model) {
     	logger.debug("Received request to show add page");
@@ -106,14 +111,14 @@ public class AimController {
 
     	// This will resolve to /WEB-INF/jsp/addpage.jsp
     	return "addpage";
-	}*/
+	}
  
     /**
      * Adds a new person by delegating the processing to PersonService.
      * Displays a confirmation JSP page
      * 
      * @return  the name of the JSP page
-     *//*
+     */
     @RequestMapping(value = "/persons/add", method = RequestMethod.POST)
     public String add(@ModelAttribute("personAttribute") Person person) {
 		logger.debug("Received request to add new person");
@@ -127,13 +132,13 @@ public class AimController {
     	// This will resolve to /WEB-INF/jsp/addedpage.jsp
 		return "addedpage";
 	}
-    */
+    
     /**
      * Deletes an existing person by delegating the processing to PersonService.
      * Displays a confirmation JSP page
      * 
      * @return  the name of the JSP page
-     *//*
+     */
     @RequestMapping(value = "/persons/delete", method = RequestMethod.GET)
     public String delete(@RequestParam(value="id", required=true) Integer id, 
     										Model model) {
@@ -148,13 +153,13 @@ public class AimController {
     	
     	// This will resolve to /WEB-INF/jsp/deletedpage.jsp
 		return "deletedpage";
-	}*/
+	}
     
     /**
      * Retrieves the edit page
      * 
      * @return the name of the JSP page
-     *//*
+     */
     @RequestMapping(value = "/persons/edit", method = RequestMethod.GET)
     public String getEdit(@RequestParam(value="id", required=true) Integer id,  
     										Model model) {
@@ -166,14 +171,14 @@ public class AimController {
     	
     	// This will resolve to /WEB-INF/jsp/editpage.jsp
     	return "editpage";
-	}*/
+	}
     
     /**
      * Edits an existing person by delegating the processing to PersonService.
      * Displays a confirmation JSP page
      * 
      * @return  the name of the JSP page
-     *//*
+     */
     @RequestMapping(value = "/persons/edit", method = RequestMethod.POST)
     public String saveEdit(@ModelAttribute("personAttribute") Person person, 
     										   @RequestParam(value="id", required=true) Integer id, 
@@ -195,5 +200,5 @@ public class AimController {
 		
     	// This will resolve to /WEB-INF/jsp/editedpage.jsp
 		return "editedpage";
-	}*/
+	}
 }

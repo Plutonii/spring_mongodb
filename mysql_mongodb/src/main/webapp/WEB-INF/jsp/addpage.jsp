@@ -12,7 +12,7 @@
 
 <h1>Create New Person</h1>
 
-<c:url var="saveUrl" value="/krams/main/persons/add" />
+<c:url var="saveUrl" value="/persons/add" />
 <form:form modelAttribute="personAttribute" method="POST" action="${saveUrl}">
 	<table>
 		<tr>

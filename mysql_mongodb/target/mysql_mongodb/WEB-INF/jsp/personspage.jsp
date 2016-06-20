@@ -10,7 +10,7 @@
 <body>
 <h1>Persons</h1>
 
-<c:url var="addUrl" value="/krams/main/persons/add" />
+<c:url var="addUrl" value="persons/add" />
 <table style="border: 1px solid; width: 500px; text-align:center">
 	<thead style="background:#fcf">
 		<tr>
@@ -22,8 +22,8 @@
 	</thead>
 	<tbody>
 	<c:forEach items="${persons}" var="person">
-			<c:url var="editUrl" value="/krams/main/persons/edit?id=${person.id}" />
-			<c:url var="deleteUrl" value="/krams/main/persons/delete?id=${person.id}" />
+			<c:url var="editUrl" value="/persons/edit?id=${person.id}" />
+			<c:url var="deleteUrl" value="/persons/delete?id=${person.id}" />
 		<tr>
 			<td><c:out value="${person.firstName}" /></td>
 			<td><c:out value="${person.lastName}" /></td>

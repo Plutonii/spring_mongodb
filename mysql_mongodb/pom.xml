@@ -108,13 +108,18 @@
     	<type>jar</type>
     	<scope>compile</scope>
     </dependency>
-    <dependency>
+        <dependency>
     	<groupId>org.hibernate</groupId>
     	<artifactId>hibernate-core</artifactId>
-    	<version>3.3.2.GA</version>
+    	<version>4.3.11.Final</version>
     	<type>jar</type>
     	<scope>compile</scope>
     </dependency>
+   <dependency>
+       <groupId>org.hibernate</groupId>
+       <artifactId>hibernate-entitymanager</artifactId>
+       <version>4.3.11.Final</version>
+   </dependency>
     <dependency>
     	<groupId>javax.persistence</groupId>
     	<artifactId>persistence-api</artifactId>
@@ -150,13 +155,13 @@
     	<type>jar</type>
     	<scope>compile</scope>
     </dependency>
-    <dependency>
+   <!--<dependency>
     	<groupId>org.hibernate</groupId>
     	<artifactId>hibernate-annotations</artifactId>
     	<version>3.4.0.GA</version>
     	<type>jar</type>
     	<scope>compile</scope>
-    </dependency>
+    </dependency>-->
     <dependency>
     	<groupId>jboss</groupId>
     	<artifactId>javassist</artifactId>

@@ -21,10 +21,16 @@
     <!-- See http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/orm/hibernate3/annotation/AnnotationSessionFactoryBean.html --> 							
 	<!-- See http://docs.jboss.org/hibernate/stable/core/api/index.html?org/hibernate/SessionFactory.html -->
 	<!-- See http://docs.jboss.org/hibernate/stable/core/api/index.html?org/hibernate/Session.html -->
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
 				 p:dataSource-ref="dataSource"
 				 p:configLocation="${hibernate.config}"
-				 p:packagesToScan="org.krams.tutorial"/>
+				 p:packagesToScan="org.krams.tutorial">
+				 <property name="annotatedClasses">
+                     <list>
+                        <value>com.manishchhabra.blog.model.Person</value>
+                     </list>
+                 </property>
+    </bean>
 	
 	<!-- Declare a datasource that has pooling capabilities-->	 
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
@@ -40,7 +46,7 @@
 				p:minPoolSize="10" />
 
 	<!-- Declare a transaction manager-->
-	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager" 
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager" 
        			p:sessionFactory-ref="sessionFactory" />
   
 </beans>

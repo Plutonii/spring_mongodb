@@ -14,7 +14,7 @@
 
 <p>You have added a new person at <%= new java.util.Date() %></p>
 
-<c:url var="mainUrl" value="/krams/main/persons" />
+<c:url var="mainUrl" value="/persons" />
 <p>Return to <a href="${mainUrl}">Main List</a></p>
 
 </body>
