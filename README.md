@@ -1,2 +1,0 @@
-# spring_mongodb
-Hello
