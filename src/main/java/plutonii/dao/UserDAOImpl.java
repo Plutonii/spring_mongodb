@@ -23,6 +23,8 @@ public class UserDAOImpl implements UserDAO {
     }
 
 	public void changeUser(User user) throws SQLException {
+		System.out.println("rdgdhrdhdrh");
+		System.out.println(user.getId());
 		getCurrentSession().update(user);
 	}
 
@@ -34,14 +36,20 @@ public class UserDAOImpl implements UserDAO {
 		getCurrentSession().delete(user);
 	}
 
-	public User getUser(Integer id) throws SQLException {
-		return (User) getCurrentSession().load(User.class, id);
+	public User getUser(String id) throws SQLException {
+		return (User) getCurrentSession().createQuery("from User u where u.id = :id1")
+				.setParameter("id1", id).list().get(0);
 	}
 
 	public List<User> getAllUsers() throws SQLException {
-		List users = new ArrayList<User>();
+		List<User> users = new ArrayList<User>();
 		users = getCurrentSession().createCriteria(User.class).list();
 		return users;
+	}
+
+	public List<User> getSubordinatesUser(String id) throws SQLException {
+		return getCurrentSession().createQuery("from User u where u.idHeadUser = :id_head")
+				.setParameter("id_head", id).list();
 	}
 
 }

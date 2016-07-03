@@ -9,6 +9,7 @@ public interface UserDAO {
 	public void changeUser(User user) throws SQLException;
 	public void addUser(User user) throws SQLException;
 	public void deleteUser(User user) throws SQLException;
-	public User getUser(Integer id) throws SQLException;
+	public User getUser(String id) throws SQLException;
 	public List<User> getAllUsers() throws SQLException;
+	public List<User> getSubordinatesUser(String id) throws SQLException;
 }

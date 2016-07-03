@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Backbone Demo: Todos</title>
+    <script src="lib/json2.js"></script>
+    <script src="lib/jquery-1.8.0.min.js"></script>
+    <script src="lib/underscore.js"></script>
+    <script src="lib/backbone.js"></script>
+    <script src="lib/backbone-min.js"></script>
+    <link rel="stylesheet" type="text/css" href="app.css" />
+    <link rel="stylesheet" type="text/css" href="lib/bootstrap.min.css" />
+    <script src="lib/bootstrap.min.js"></script>
+    <script src="js/models/aim.js"></script>
+    <script src="js/models/map.js"></script>
+    <script src="js/collections/aims.js"></script>
+    <script src="js/collections/maps.js"></script>
+    <script src="js/views/aimView.js"></script>
+    <script src="js/views/mapView.js"></script>
+    <script src="js/views/appView.js"></script>
+    <script src="js/routers/router.js"></script>
+    <script src="js/app.js"></script>
+  </head>
+
+  
+  <body>
+  <div id="globalDiv">
+	  <div class="navbar navbar-static-top">
+	  	<nav class="navbar-inner">
+	  		<a href="" class="brand">Управление целями</a>
+	  		<ul class="nav">
+	  			<li class="divider-vertical"></li>
+	  			<li><a href="#!/addMap" id="addNewMapClick">Добавить новую карту</a></li>
+	  			<li><a href="#!/" id="showAllMapsClick">Назад к картам</a></li>
+	  			<li><a href="#!/showAllAims" id="showAllAimsClick">Просмотреть все цели</a></li>
+	  			<li><a href="#!/add" id="addNewAimClick">Добавить новую цель</a></li>
+	  			<li class="dropdown">
+	  				<a class="dropdown-toggle" data-toggle="dropdown">Авторизация<b class="caret"></b></a>
+	  				<div class="will dropdown-menu">
+		  				<form method="post" action="" class="" style="margin: 7px;">
+		  				<input type="text" placeholder="Ваш логин" name="login">
+		  				<input type="password" placeholder="Ваш пароль" name="password">
+		  				<label class="checkbox">
+		  					<input type="checkbox" name="remember">Запомнить меня
+		  				</label>
+		  				<button type="submit" class="btn btn-block btn-success" name="submit">Войти</button>
+		  				</form>
+	  				</div>
+	  			</li>
+	  		</ul>
+	  	</nav>
+	  </div>
+	  
+	  
+	    <div class="container-fluid" style="margin-top: 50px;">
+	  	  <section class="app" id="app">
+		  	<div class="row-fluid">
+		  		<div class="userView span3 block">
+		  			Users
+		  		</div>
+		  		<div class="mainView span8 block">
+		  			<section class="listMaps">
+		  				<h1>Карты</h1>
+		  				<table class="tableListMaps table table-bordered"></table>
+		 			 </section>
+		  			<section class="listAims">
+		  				<h1>Цели</h1>
+		    			<div class="infoMap"></div>
+		  				<table class="tableListAims table table-bordered"></table>
+		  			</section>
+		  			<section class="addMap">
+					  	<label for="year">Год: </label>
+					  	<input type="text" required placeholder="Год" class="year"><br>
+					  	<label for="statusMap">Статус: </label>
+						<input type="text" required placeholder="Статус" class="statusMap"><br>
+					  	<label for="lastChange">Последнее изменение: </label>
+						<input type="text" required placeholder="Последнее изменение" class="lastChange"><br>
+						<div class="btn-group">
+						<button class="addMapBut btn">Создать</button>
+						<button class="cancelAddMap btn">Отмета</button>
+						</div>
+					</section>
+					<section class="add">
+					  	<label for="number">Номер цели: </label>
+					  	<input type="text" required placeholder="Номер" class="number"><br>
+					  	<label for="personalAim-input">Название цели: </label>
+						<input type="text" required placeholder="Цель" class="personalAim-input"><br>
+						<label for="description-input">Описание цели: </label>
+						<input type="text" required placeholder="Описание" class="description-input"><br>
+						<label for="valueAim">Вес цели: </label>
+						<input type="text" required placeholder="Вес" class="valueAim"><br>
+						<label for="expectedRating">Ожидаемый рейтинг: </label>
+						<input type="text" required placeholder="Ожидаемый рейтинг" class="expectedRating"><br>
+						<label for="comment">Комментарий: </label>
+						<input type="text" required placeholder="Комментарий" class="comment"><br>
+						<div class="btn-group">
+							<button class="addAimBut btn">Добавить</button>
+							<button class="cancelAddAim btn">Отмета</button>
+						</div>
+					</section>
+					<section class="edit" id="editAimSect">
+					  	<label for="number">Номер цели: </label>
+					  	<input type="text" required placeholder="Номер" class="numberEd"><br>
+					  	<label for="personalAim-input">Название цели: </label>
+						<input type="text" required placeholder="Цель" class="personalAimEd"><br>
+						<label for="description-input">Описание цели: </label>
+						<input type="text" required placeholder="Описание" class="descriptionEd"><br>
+						<label for="valueAim">Вес цели: </label>
+						<input type="text" required placeholder="Вес" class="valueAimEd"><br>
+						<label for="expectedRating">Ожидаемый рейтинг: </label>
+						<input type="text" required placeholder="Ожидаемый рейтинг" class="expectedRatingEd"><br>
+						<label for="comment">Комментарий: </label>
+						<input type="text" required placeholder="Комментарий" class="commentEd"><br>
+						<div class="btn-group">
+							<button class="editBut btn">Сохранить изменения</button>
+						</div>
+					</section>
+		  		</div>
+		  	</div>
+		  </section>
+	  </div>
+  </div>
+
+	<!-- template for aims -->
+    <script type="text/template" id="aimapp">
+		<td><%= number %></td><td><%= personalAim %></td>
+		<td><%=description%></td><td><%= valueAim %></td>
+		<td><%= expectedRating %></td><td><%= comment %></td>
+		<td><div class="btn-group"><button class="edit btn">Изменить</button> <button class="delete btn">Удалить</button></div></td>
+	</script>
+	
+	<!-- template for maps -->
+	<script type="text/template" id="mapapp">
+		<td><%= year %></td>
+		<td><%= status %></td>
+		<td><%= lastChange %></td>
+		<td>
+			<div class="btn-group">
+			<a href="#!/showAims"><button class="showAim btn btn-success">Показать цели</button></a>
+			<button class="delete btn btn-inverse">Удалить</button>
+			</div>
+		</td>
+	</script>
+  </body>
+
+</html>

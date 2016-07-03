@@ -2,26 +2,64 @@ package plutonii.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+//import org.springframework.data.mongodb.core.mapping.Field;
+
+import com.mongodb.BasicDBObject;
+
+import java.util.Calendar;
 import java.util.Date;
 
 @Document
 public class Aim {
 
 	@Id
-	private String id;		// unique identificator;
+	private String id;		// unique identificator;ид
 	
-	private int number;		// number's aim;
-	private String idHead;		// id the aim of the top-level;
-	private String description;		// aim transcript;
-	private String personalAim; 	// ????????;
-	private String ratingMeasure;		// rating measure for performance evaluation;
-	private int expectedValue;		// the expected value of performance aims;
-	private Date realizDate;		// realization date;
-	private int valueAim;		// aim weight;
-	private String comment;		// comments for aims;
-	private int expectedrating;		// expected rating;
-	private String commentRating;		// comments for rating;
-	private String idCreatorAim;		// id creator of aim;
+	private int number;		// number's aim;номер
+	private String idHead;		// id the aim of the top-level;ид цели верхнего уровня
+	private String description;		// aim transcript;описание цели
+	private String personalAim; 	// ????????;сама цель
+	private String ratingMeasure;		// rating measure for performance evaluation;Мера рейтинга
+	private int expectedValue;		// the expected value of performance aims;Ожидаемое значение
+	private Date realizDate;		// realization date;Дата реализации
+	private int valueAim;		// aim weight;Вес цели
+	private String comment;		// comments for aims;Комментарий
+	private int expectedRating;		// expected rating;Ожидаемый рейтинг
+	private String commentRating;		// comments for rating;Комментарий к рейтингу
+	private String idCreatorAim;		// id creator of aim;ид создателя цели (пользователя)
+	private String idMap;
+	
+
+
+	public Aim (int number, String idHead, String description, String personalAim, String ratingMeasure,
+			   int expectedValue, Date realizDate, int valueAim, String comment, int expectedRating,
+			   String commentRating, String idCreatorAim, String idMap) {
+		this.number = number;
+		this.idHead = idHead;
+		this.description = description;
+		this.personalAim = personalAim;
+		this.ratingMeasure = ratingMeasure;
+		this.expectedValue = expectedValue;
+		this.realizDate = realizDate;
+		this.valueAim = valueAim;
+		this.comment = comment;
+		this.expectedRating = expectedRating;
+		this.commentRating = commentRating;
+		this.idCreatorAim = idCreatorAim;
+		this.idMap = idMap;
+	}
+	
+	public Aim() {
+		
+	}
+	
+	public String getIdMap() {
+		return idMap;
+	}
+
+	public void setIdMap(String idMap) {
+		this.idMap = idMap;
+	}
 	
 	public String getId() {
 		return id;
@@ -104,12 +142,12 @@ public class Aim {
 		this.comment = comment;
 	}
 	
-	public int getExpectedrating() {
-		return expectedrating;
+	public int getExpectedRating() {
+		return expectedRating;
 	}
 	
-	public void setExpectedrating(int expectedrating) {
-		this.expectedrating = expectedrating;
+	public void setExpectedrating(int expectedRating) {
+		this.expectedRating = expectedRating;
 	}
 	
 	public String getCommentRating() {
@@ -127,5 +165,9 @@ public class Aim {
 	public void setIdCreatorAim(String idCreatorAim) {
 		this.idCreatorAim = idCreatorAim;
 	}
+	
+    public String toString() {
+        return "AIM:\n" + this.id + "\nidCreated: " + this.idCreatorAim + "\nPersonal aim: " + this.personalAim;
+    }
 	
 }

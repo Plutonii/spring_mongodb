@@ -24,12 +24,12 @@ public class MapService {
     	return mapDAO.getAllMaps();
     }
     
-    public Map getMap(Map map) {
-    	return mapDAO.getMap(map);
+    public Map getMap(String id) {
+    	return mapDAO.getMap(id);
     }
 
-    public void deleteMap(Map map) {
-    	mapDAO.deleteMap(map);
+    public void deleteMap(String id) {
+    	mapDAO.deleteMap(id);
     }
     
 	public void changeMap(Map map) {

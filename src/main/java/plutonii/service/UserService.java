@@ -3,13 +3,12 @@ package plutonii.service;
 import java.sql.SQLException;
 import java.util.List;
 
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+
 
 import plutonii.dao.UserDAO;
 import plutonii.model.User;
@@ -50,7 +49,7 @@ public class UserService{
 		
 	}
 
-	public User getUser(Integer id) {
+	public User getUser(String id) {
 		try {
 			return userDAO.getUser(id);
 		} catch (SQLException e) {
@@ -62,6 +61,15 @@ public class UserService{
 	public List<User> getAllUsers() {
 		try {
 			return userDAO.getAllUsers();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public List<User> getSubordinatesUser(String id) {
+		try {
+			return userDAO.getSubordinatesUser(id);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;

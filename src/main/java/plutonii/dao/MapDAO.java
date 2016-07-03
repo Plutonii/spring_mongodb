@@ -8,9 +8,9 @@ public interface MapDAO {
 	
 	public List<Map> getAllMaps();
 	
-	public Map getMap(Map map);
+	public Map getMap(String id);
 	
-	public void deleteMap(Map map);
+	public void deleteMap(String id);
 	
 	public void changeMap(Map map);
 }

@@ -2,7 +2,8 @@ package plutonii.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import java.util.Date;
+
+import java.sql.Timestamp;
 
 @Document
 public class Map {
@@ -12,7 +13,7 @@ public class Map {
 	
 	private int year;		// year;
 	private String status;		// status map's;
-	private Date lastChange;		// lastChangeMap;
+	private String lastChange;		// lastChangeMap;
 	
 	public String getId() {
 		return id;
@@ -32,11 +33,18 @@ public class Map {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public Date getLastChange() {
+	public String getLastChange() {
+		//Timestamp expTime = new Timestamp(lastChange);
+		System.out.println(lastChange);
 		return lastChange;
 	}
-	public void setLastChange(Date lastChange) {
-		this.lastChange = lastChange;
+	public void setLastChange(String lastChange) {
+		System.out.println(lastChange);
+		java.util.Date date= new java.util.Date();
+		Timestamp expTime = new Timestamp(date.getTime());
+		System.out.println(expTime);
+		this.lastChange = expTime.toLocaleString();
+		//this.lastChange = lastChange;
 	}
 	
 }

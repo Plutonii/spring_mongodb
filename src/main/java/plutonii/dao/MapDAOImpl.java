@@ -4,13 +4,17 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 import static org.springframework.data.mongodb.core.query.Query.query;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import plutonii.model.Aim;
 import plutonii.model.Map;
 import plutonii.dao.MapDAO;
 
@@ -31,20 +35,26 @@ public class MapDAOImpl implements MapDAO {
 		
 	}
 
-	public Map getMap(Map map) {
-		Map map1 = new Map();
-		List<Map> mapReturn = mongoTemplate.find(query(where("_id").is(map.getId())), Map.class);
-		map1 = mapReturn.get(0);
-		return map1;
+	public Map getMap(String id) {
+		List <Map> mapL = new ArrayList<Map>();
+		mapL = mongoTemplate.find(new Query(Criteria.where("_id").is(id)), Map.class, COLLECTION_NAME);
+		return mapL.size() == 0? null: mapL.get(0);
 	}
 
-	public void deleteMap(Map map) {
-		mongoTemplate.remove(map, COLLECTION_NAME);
+	public void deleteMap(String id) {
+		mongoTemplate.remove(new Query(Criteria.where("id").is(id)), Map.class, COLLECTION_NAME);
 		
 	}
 
 	public void changeMap(Map map) {
-		mongoTemplate.insert(map, COLLECTION_NAME);		
+		org.springframework.data.mongodb.core.query.Update update =
+				org.springframework.data.mongodb.core.query.Update.update("id", map.getId());
+		
+		if (map.getYear() != 0) update.set("year", map.getYear());
+		//if (map.getLastChange() != null) update.set("lastChange", map.getLastChange());
+		if (map.getStatus() != null) update.set("status", map.getStatus());
+		mongoTemplate.upsert(new Query(Criteria.where("_id").is(map.getId())), update,	
+				Map.class, COLLECTION_NAME);
 	}
 	
 	public List<Map> getAllMaps() {
